@@ -22,7 +22,8 @@ Cognito is a modern e-commerce platform, similar to Magento or WooCommerce, desi
 
 1. **API Backend**
    - Built with LangGraph for AI-powered workflows
-   - MongoDB as the database layer
+   - MongoDB for application data storage
+   - Weaviate for vector embeddings and semantic search
    - RESTful API endpoints
 
 2. **AI Chat Interface**
@@ -43,7 +44,9 @@ Cognito is a modern e-commerce platform, similar to Magento or WooCommerce, desi
 - **Frontend**: Next.js with TypeScript
 - **Backend**: LangGraph + MongoDB
 - **AI/ML**: LangGraph for conversational commerce
-- **Database**: MongoDB
+- **Database**:
+  - MongoDB - Primary database for application data
+  - Weaviate - Vector database for AI-powered search and recommendations
 
 ## Code Organization
 
