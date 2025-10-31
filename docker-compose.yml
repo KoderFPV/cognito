@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # Next.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cognito-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongo:27017/cognito
+    depends_on:
+      - mongo
+    restart: unless-stopped
+    networks:
+      - cognito-network
+
+  # MongoDB Database
+  mongo:
+    image: mongo:7
+    container_name: cognito-mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=cognito
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+    networks:
+      - cognito-network
+
+volumes:
+  mongo-data:
+    driver: local
+
+networks:
+  cognito-network:
+    driver: bridge
