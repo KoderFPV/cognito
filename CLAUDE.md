@@ -16,12 +16,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Cognito is a modern e-commerce platform, similar to Magento or WooCommerce, designed with cutting-edge technology and AI-powered features.
+Cognito is a modern **agentic e-commerce platform**, similar to Magento or WooCommerce, designed with cutting-edge technology and AI-powered autonomous agents. Unlike traditional e-commerce systems, Cognito leverages AI agents to autonomously handle complex workflows, customer interactions, and business processes.
 
 ### Architecture Components
 
-1. **API Backend**
-   - Built with LangGraph for AI-powered workflows
+1. **API Backend (Agentic)**
+   - Built with LangGraph - framework for building stateful, multi-agent AI applications
+   - Autonomous AI agents handle complex e-commerce workflows
    - MongoDB for application data storage
    - Weaviate for vector embeddings and semantic search
    - RESTful API endpoints
