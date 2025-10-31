@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@/template/styles/globals.scss";
 
 export const metadata: Metadata = {
   title: "Cognito",
