@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Language Policy
+
+**IMPORTANT**: Use English for all code, comments, documentation, commit messages, variable names, function names, and any technical communication. This is a strict requirement for the entire codebase.
+
 ## Project Overview
 
 Cognito is a modern e-commerce platform, similar to Magento or WooCommerce, designed with cutting-edge technology and AI-powered features.

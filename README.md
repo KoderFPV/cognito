@@ -1,78 +1,78 @@
 # Cognito
 
-Nowoczesna platforma e-commerce z AI, podobna do Magento czy WooCommerce.
+Modern AI-powered e-commerce platform, similar to Magento or WooCommerce.
 
-## Założenia Projektu
+## Project Overview
 
-Cognito to innowacyjna platforma e-commerce wykorzystująca sztuczną inteligencję do usprawnienia doświadczenia zakupowego.
+Cognito is an innovative e-commerce platform leveraging artificial intelligence to enhance the shopping experience.
 
-### Główne Komponenty
+### Main Components
 
 1. **API Backend**
-   - Wykorzystuje LangGraph do zarządzania workflow'ami AI
-   - MongoDB jako baza danych
-   - Obsługa złożonych operacji e-commerce
+   - Uses LangGraph for AI workflow management
+   - MongoDB as the database
+   - Complex e-commerce operations handling
 
-2. **Chat AI**
-   - Przeszukiwanie produktów w naturalnym języku
-   - Inteligentne rekomendacje
-   - Możliwość zakupu bezpośrednio przez chat
+2. **AI Chat**
+   - Natural language product search
+   - Intelligent recommendations
+   - Direct purchase capability through chat
 
 3. **CMS**
-   - Panel administracyjny do konfiguracji sklepu
-   - Zarządzanie produktami
-   - Zarządzanie zamówieniami i stanem magazynowym
-   - Personalizacja i ustawienia
+   - Admin panel for store configuration
+   - Product management
+   - Order and inventory management
+   - Personalization and settings
 
-### Technologie
+### Technologies
 
 - **Frontend**: Next.js + TypeScript
 - **Backend**: LangGraph + MongoDB
-- **AI**: LangGraph dla conversational commerce
+- **AI**: LangGraph for conversational commerce
 - **Database**: MongoDB
 
 ## Status
 
-Projekt w fazie inicjalizacji.
+Project in initialization phase.
 
-## Uruchamianie Projektu
+## Running the Project
 
-### Docker (Zalecane)
+### Docker (Recommended)
 
-Uruchom całą aplikację z MongoDB za pomocą Docker Compose:
+Run the entire application with MongoDB using Docker Compose:
 
 ```bash
-# Zbuduj i uruchom kontenery
+# Build and start containers
 docker-compose up -d
 
-# Sprawdź logi
+# Check logs
 docker-compose logs -f app
 
-# Zatrzymaj kontenery
+# Stop containers
 docker-compose down
 ```
 
-Dostępne serwisy:
-- **Aplikacja**: http://localhost:3000
+Available services:
+- **Application**: http://localhost:3000
 - **MongoDB**: localhost:27017
 
-### Rozwój Lokalny
+### Local Development
 
 ```bash
-# Zainstaluj zależności
+# Install dependencies
 npm install
 
-# Uruchom serwer deweloperski
+# Run development server
 npm run dev
 
-# Zbuduj produkcyjną wersję
+# Build production version
 npm run build
 npm start
 ```
 
-## Konfiguracja
+## Configuration
 
-Skopiuj `.env.example` do `.env` i dostosuj zmienne środowiskowe:
+Copy `.env.example` to `.env` and adjust environment variables:
 
 ```bash
 cp .env.example .env
