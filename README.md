@@ -17,12 +17,14 @@ Cognito is an innovative e-commerce platform leveraging artificial intelligence 
    - Natural language product search
    - Intelligent recommendations
    - Direct purchase capability through chat
+   - Mobile-first responsive design with desktop support
 
 3. **CMS**
    - Admin panel for store configuration
    - Product management
    - Order and inventory management
    - Personalization and settings
+   - Mobile-first responsive design with desktop support
 
 ### Technologies
 

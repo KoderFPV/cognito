@@ -21,12 +21,14 @@ Cognito is a modern e-commerce platform, similar to Magento or WooCommerce, desi
    - Conversational product search
    - Natural language product discovery
    - Direct purchase capability through chat
+   - Mobile-first responsive design with desktop support
 
 3. **CMS (Content Management System)**
    - Store configuration interface
    - Product management
    - Order and inventory management
    - Settings and customization
+   - Mobile-first responsive design with desktop support
 
 ### Technology Stack
 
@@ -34,6 +36,12 @@ Cognito is a modern e-commerce platform, similar to Magento or WooCommerce, desi
 - **Backend**: LangGraph + MongoDB
 - **AI/ML**: LangGraph for conversational commerce
 - **Database**: MongoDB
+
+## Code Organization
+
+### Shared Components
+
+- **Forms**: Shared form logic and reusable form components are located in `components/forms`
 
 ## Project Status
 
