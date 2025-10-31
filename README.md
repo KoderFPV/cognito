@@ -32,6 +32,7 @@ Cognito is an innovative e-commerce platform leveraging artificial intelligence 
 - **Backend**: LangGraph + MongoDB
 - **AI**: LangGraph for conversational commerce
 - **Database**: MongoDB
+- **i18n**: next-intl (English and Polish support)
 
 ## Status
 

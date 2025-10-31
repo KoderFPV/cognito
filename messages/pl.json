@@ -1,0 +1,24 @@
+{
+  "common": {
+    "login": "Zaloguj się",
+    "logout": "Wyloguj się",
+    "email": "Email",
+    "password": "Hasło",
+    "submit": "Wyślij",
+    "cancel": "Anuluj"
+  },
+  "home": {
+    "title": "Witaj w Cognito",
+    "subtitle": "Nowoczesna platforma e-commerce z AI"
+  },
+  "cms": {
+    "login": {
+      "title": "Logowanie do CMS",
+      "subtitle": "Zaloguj się, aby uzyskać dostęp do panelu administracyjnego",
+      "email": "Adres email",
+      "password": "Hasło",
+      "submit": "Zaloguj się",
+      "forgotPassword": "Zapomniałeś hasła?"
+    }
+  }
+}

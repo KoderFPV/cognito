@@ -51,6 +51,33 @@ Cognito is a modern e-commerce platform, similar to Magento or WooCommerce, desi
 
 - **Forms**: Shared form logic and reusable form components are located in `components/forms`
 
+### Internationalization (i18n)
+
+The application uses **next-intl** for internationalization:
+
+- **Supported locales**: English (en), Polish (pl)
+- **Default locale**: English (en)
+- **Translation files**: Located in `messages/` directory (e.g., `messages/en.json`, `messages/pl.json`)
+- **URL structure**: All routes are prefixed with locale (e.g., `/en/cms/login`, `/pl/cms/login`)
+- **Configuration**:
+  - `i18n/config.ts` - Locale configuration
+  - `i18n/request.ts` - Server-side translation setup
+  - `middleware.ts` - Locale detection and routing
+
+**Usage in components:**
+```tsx
+// Server components
+import { useTranslations } from 'next-intl';
+
+const t = useTranslations('namespace');
+t('key'); // Returns translated string
+
+// Client components
+'use client';
+import { useTranslations } from 'next-intl';
+// Same usage as server components
+```
+
 ## Project Status
 
 This project is in the initial setup phase. The Next.js frontend structure has been initialized.

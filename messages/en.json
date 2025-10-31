@@ -1,0 +1,24 @@
+{
+  "common": {
+    "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
+  "home": {
+    "title": "Welcome to Cognito",
+    "subtitle": "Modern AI-powered e-commerce platform"
+  },
+  "cms": {
+    "login": {
+      "title": "CMS Login",
+      "subtitle": "Sign in to access the admin panel",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Sign In",
+      "forgotPassword": "Forgot password?"
+    }
+  }
+}
