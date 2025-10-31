@@ -2,6 +2,8 @@
 
 Modern AI-powered e-commerce platform, similar to Magento or WooCommerce.
 
+**Open Source Software** - Licensed under the Functional Source License (FSL). Free to use and modify, with restrictions on competitive SaaS offerings.
+
 ## Project Overview
 
 Cognito is an innovative e-commerce platform leveraging artificial intelligence to enhance the shopping experience.
