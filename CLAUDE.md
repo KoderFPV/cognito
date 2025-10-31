@@ -81,6 +81,151 @@ import { useTranslations } from 'next-intl';
 // Same usage as server components
 ```
 
+### Template System
+
+The application uses a **template system** that separates business logic from presentation layer, enabling complete UI customization without modifying core functionality.
+
+#### Architecture Pattern: Container/Presentational
+
+**Business Logic Components** (`components/`, `app/`, `services/`):
+- Component state (useState, useReducer)
+- Side effects (useEffect, API calls)
+- Event handlers and business logic
+- Data fetching and mutations
+- Routing and navigation
+
+**Template Components** (`template/`):
+- Pure presentational components
+- HTML structure (JSX)
+- CSS styles (SCSS modules)
+- Visual design and layout
+- Receive all data via props
+
+#### Directory Structure
+
+```
+template/
+├── components/              # Presentational components
+│   └── LoginForm/
+│       ├── LoginFormTemplate.tsx         # Pure JSX + props
+│       └── LoginFormTemplate.module.scss # Component styles
+├── styles/                  # Global styles and design system
+│   ├── globals.scss         # Global CSS reset and base styles
+│   ├── variables.scss       # Design tokens (colors, fonts, spacing)
+│   └── mixins.scss          # Reusable SCSS utilities
+└── README.md               # Template customization guide
+```
+
+#### Usage Pattern
+
+**Logic Component** (business logic):
+```tsx
+// components/login/loginForm/LoginForm.tsx
+'use client';
+
+import { useState } from 'react';
+import { LoginFormTemplate } from '@/template/components/LoginForm/LoginFormTemplate';
+
+export const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    // Business logic here
+  };
+
+  return (
+    <LoginFormTemplate
+      email={email}
+      password={password}
+      onEmailChange={setEmail}
+      onPasswordChange={setPassword}
+      onSubmit={handleSubmit}
+    />
+  );
+};
+```
+
+**Template Component** (presentation):
+```tsx
+// template/components/LoginForm/LoginFormTemplate.tsx
+import styles from './LoginFormTemplate.module.scss';
+
+export interface LoginFormTemplateProps {
+  email: string;
+  password: string;
+  onEmailChange: (value: string) => void;
+  onPasswordChange: (value: string) => void;
+  onSubmit: (e: React.FormEvent) => void;
+}
+
+export const LoginFormTemplate = ({
+  email,
+  password,
+  onEmailChange,
+  onPasswordChange,
+  onSubmit,
+}: LoginFormTemplateProps) => {
+  return (
+    <form onSubmit={onSubmit}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => onEmailChange(e.target.value)}
+      />
+      {/* Pure presentation - no business logic */}
+    </form>
+  );
+};
+```
+
+#### Design System
+
+**Design Tokens** (`template/styles/variables.scss`):
+- Colors: `$primary-color`, `$secondary-color`, `$background-color`, etc.
+- Typography: `$font-family-base`, `$font-size-base`, `$font-size-h1`, etc.
+- Spacing: `$spacing-xs` to `$spacing-2xl`
+- Border radius: `$border-radius-sm` to `$border-radius-xl`
+- Breakpoints: `$breakpoint-mobile`, `$breakpoint-tablet`, `$breakpoint-desktop`
+
+**SCSS Mixins** (`template/styles/mixins.scss`):
+```scss
+@include flex-center;        // Flexbox centered layout
+@include card;               // Card styling with shadow
+@include button-primary;     // Primary button styles
+@include input-base;         // Input field styles
+
+// Responsive utilities
+@include mobile { /* ... */ }
+@include tablet-up { /* ... */ }
+@include desktop { /* ... */ }
+```
+
+#### Best Practices
+
+**✅ DO:**
+- Keep template components pure (no state, no side effects)
+- Use design tokens from `variables.scss`
+- Maintain TypeScript prop interfaces
+- Import templates from `@/template/components/`
+- Document template customization in `template/README.md`
+
+**❌ DON'T:**
+- Add business logic to template components
+- Make API calls from templates
+- Use React hooks (useState, useEffect) in templates
+- Change prop interfaces without updating logic components
+- Import from `components/`, `services/`, or `app/` in templates
+
+#### Customization
+
+Users can completely customize the application's appearance by:
+1. Replacing the entire `template/` directory
+2. Keeping the same file names and TypeScript interfaces
+3. Modifying HTML structure and styles as needed
+
+See `template/README.md` for detailed customization guide.
+
 ## Project Status
 
 This project is in the initial setup phase. The Next.js frontend structure has been initialized.
