@@ -41,6 +41,20 @@ Cognito is an innovative e-commerce platform leveraging artificial intelligence 
 
 Project in initialization phase.
 
+## Progress
+
+| Feature | Status |
+|---------|--------|
+| Login | ❌ |
+| Product Search | ❌ |
+| Checkout | ❌ |
+| Payments | ❌ |
+| Add New Products | ❌ |
+| Store Configuration | ❌ |
+| Browse Orders | ❌ |
+| Browse Users | ❌ |
+| Other | ❌ |
+
 ## Running the Project
 
 ### Docker (Recommended)
