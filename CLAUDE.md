@@ -14,6 +14,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Never use classes**: All code must use functions, pure functions, and functional composition
 - **No OOP**: Avoid object-oriented programming patterns (classes, inheritance, this keyword)
 - Use functional patterns: pure functions, immutability, composition, higher-order functions
+- **YAGNI (You Aren't Gonna Need It)**: Only implement functionality that is currently needed. Do not create functions, features, or abstractions for future use. If a function is not used in the current implementation, do not write it.
+- **No default parameters**: Never use default values in function arguments. All parameters must be explicitly provided by the caller. This makes function calls explicit and prevents hidden behavior.
 
 ### Documentation
 
@@ -26,6 +28,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Prefer named exports**: Use `export const ComponentName` instead of `export default` when possible
 - Exception: Next.js requires `export default` for pages, layouts, and route handlers
 - Named exports improve code discoverability and refactoring capabilities
+
+### Naming Conventions
+
+- **Interfaces**: All TypeScript interfaces must start with capital "I" (e.g., `IUser`, `IProduct`, `IOrder`)
+- This convention clearly distinguishes interfaces from types, classes, and other constructs
+
+## Documentation
+
+Comprehensive documentation is available in the `docs/` directory:
+- **AUTHENTICATION.md** - Complete authentication and authorization guide
+- **TEST_GUIDE.md** - Testing guidelines and best practices
 
 ## Project Overview
 
@@ -61,8 +74,126 @@ Cognito is a modern **agentic e-commerce platform**, similar to Magento or WooCo
 - **Database**:
   - MongoDB - Primary database for application data
   - Weaviate - Vector database for AI-powered search and recommendations
+- **Validation**: Zod with zod-i18n-map for runtime type validation and internationalized error messages
+- **Authentication**: Auth.js (NextAuth v5) with JWT sessions and role-based access control
 
 ## Code Organization
+
+### Domain Layer
+
+The `domain/` directory contains domain models and interfaces that define the core business entities and their contracts:
+
+- **Domain Interfaces**: TypeScript interfaces and types representing business entities (e.g., `domain/user.ts`)
+- **Pure Types**: Domain models are pure TypeScript types with no implementation logic
+- **Business Contracts**: Define the shape of data used throughout the application
+- **Technology Agnostic**: Domain layer is independent of frameworks, databases, and external services
+
+**Directory Structure:**
+```
+domain/
+├── user.ts           # User-related interfaces and types
+├── product.ts        # Product domain models (future)
+├── order.ts          # Order domain models (future)
+└── ...               # Other domain entities
+```
+
+**Principles:**
+- Domain types represent business concepts, not database schemas
+- Keep domain models simple and focused on data structure
+- Use functional programming patterns (no classes)
+- Domain layer should have no external dependencies
+
+### Repository Layer
+
+The `repositories/` directory contains all database access logic and external data source operations:
+
+- **Database Operations**: All MongoDB and Weaviate operations must be implemented in repositories
+- **Functional Pattern**: Use pure functions for all repository operations
+- **Single Responsibility**: Each repository handles operations for one domain entity
+- **Technology Abstraction**: Services and components should never directly access databases
+
+**Directory Structure:**
+```
+repositories/
+├── users/
+│   ├── usersRepository.ts       # User database operations
+│   └── usersRepository.test.ts  # Repository tests
+├── products/
+│   └── productsRepository.ts    # Product database operations
+└── ...                          # Other entity repositories
+```
+
+**Example:**
+```typescript
+// repositories/users/usersRepository.ts
+import { Db } from 'mongodb';
+import { IUser } from '@/domain/user';
+
+export const findUserByEmail = async (
+  db: Db,
+  email: string
+): Promise<IUser | null> => {
+  const collection = db.collection<IUser>('users');
+  return collection.findOne({ email, deleted: false });
+};
+
+export const createUser = async (
+  db: Db,
+  userData: Omit<IUser, '_id'>
+): Promise<IUser> => {
+  const collection = db.collection<IUser>('users');
+  const result = await collection.insertOne(userData as any);
+  return { ...userData, _id: result.insertedId.toString() };
+};
+```
+
+**Principles:**
+- All MongoDB operations go through repositories
+- All Weaviate operations go through repositories
+- Repositories return domain types (interfaces from `domain/`)
+- Services use repositories, never direct database access
+- Use functional programming patterns (no classes)
+- Each function should be pure and testable
+
+### Validation with Zod
+
+The application uses **Zod** for runtime type validation and schema validation:
+
+- **Schema Definition**: Define validation schemas using Zod in service layers
+- **Internationalization**: Use `zod-i18n-map` for translated validation error messages
+- **Supported Languages**: English (en), Polish (pl)
+- **Type Safety**: Zod schemas provide both runtime validation and TypeScript type inference
+
+**Usage Pattern:**
+```typescript
+// services/registration/registration.service.ts
+import { z } from 'zod';
+import { zodI18nMap } from 'zod-i18n-map';
+
+export const registrationSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+  firstName: z.string().min(1),
+});
+
+export type RegistrationInput = z.infer<typeof registrationSchema>;
+
+export const validateRegistrationData = (
+  data: unknown,
+  locale: string
+): RegistrationInput => {
+  // Configure zod i18n for the locale
+  z.setErrorMap(zodI18nMap);
+  return registrationSchema.parse(data);
+};
+```
+
+**Principles:**
+- All external input (API requests, form submissions) must be validated with Zod
+- Define schemas close to where they're used (in service files)
+- Use `z.infer<typeof schema>` to derive TypeScript types from schemas
+- Always pass locale explicitly to validation functions (no default parameters)
+- Validation errors are automatically translated based on locale
 
 ### Shared Components
 

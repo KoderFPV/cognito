@@ -16,12 +16,17 @@
     "test:all": "vitest run && playwright test"
   },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "bcryptjs": "^3.0.2",
     "mongodb": "^6.20.0",
     "next": "^15.0.0",
+    "next-auth": "^5.0.0-beta.30",
     "next-intl": "^4.4.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sass": "^1.93.3"
+    "sass": "^1.93.3",
+    "zod": "^4.1.12",
+    "zod-i18n-map": "^2.27.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.1",
@@ -35,6 +40,7 @@
     "eslint": "^9",
     "eslint-config-next": "^15.0.0",
     "happy-dom": "^20.0.10",
+    "mongodb-memory-server": "^10.3.0",
     "typescript": "^5",
     "vitest": "^4.0.6"
   }

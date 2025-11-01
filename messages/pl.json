@@ -20,5 +20,13 @@
       "submit": "Zaloguj się",
       "forgotPassword": "Zapomniałeś hasła?"
     }
+  },
+  "api": {
+    "registration": {
+      "success": "Użytkownik zarejestrowany pomyślnie",
+      "validationFailed": "Walidacja nie powiodła się",
+      "userExists": "Użytkownik z tym adresem email już istnieje",
+      "registrationFailed": "Rejestracja nie powiodła się"
+    }
   }
 }

@@ -20,5 +20,13 @@
       "submit": "Sign In",
       "forgotPassword": "Forgot password?"
     }
+  },
+  "api": {
+    "registration": {
+      "success": "User registered successfully",
+      "validationFailed": "Validation failed",
+      "userExists": "User with this email already exists",
+      "registrationFailed": "Registration failed"
+    }
   }
 }

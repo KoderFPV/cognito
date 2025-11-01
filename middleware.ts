@@ -1,23 +1,43 @@
+import { NextRequest, NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 import { locales, defaultLocale } from './i18n/config';
+import { auth } from '@/services/auth/auth.config';
+import { ROLE } from '@/domain/user';
 
-export default createMiddleware({
-  // A list of all locales that are supported
+const intlMiddleware = createMiddleware({
   locales,
-
-  // Used when no locale matches
   defaultLocale,
-
-  // Always use locale prefix
   localePrefix: 'always'
 });
 
+export default async function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  const locale = pathname.split('/')[1];
+
+  const isCmsRoute = pathname.includes('/cms');
+  const isCmsLoginRoute = pathname.includes('/cms/login');
+
+  if (isCmsRoute && !isCmsLoginRoute) {
+    const session = await auth();
+
+    if (!session) {
+      return NextResponse.redirect(
+        new URL(`/${locale}/cms/login`, request.url)
+      );
+    }
+
+    if (session.user.role !== ROLE.ADMIN) {
+      return NextResponse.redirect(
+        new URL(`/${locale}`, request.url)
+      );
+    }
+  }
+
+  return intlMiddleware(request);
+}
+
 export const config = {
-  // Match only internationalized pathnames
   matcher: [
-    // Match all pathnames except for
-    // - … if they start with `/api`, `/_next` or `/_vercel`
-    // - … the ones containing a dot (e.g. `favicon.ico`)
     '/((?!api|_next|_vercel|.*\\..*).*)'
   ]
 };
