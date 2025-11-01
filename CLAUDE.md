@@ -8,6 +8,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Code Conventions
 
+### Programming Paradigm
+
+- **Functional Programming**: Use functional programming patterns exclusively
+- **Never use classes**: All code must use functions, pure functions, and functional composition
+- **No OOP**: Avoid object-oriented programming patterns (classes, inheritance, this keyword)
+- Use functional patterns: pure functions, immutability, composition, higher-order functions
+
+### Documentation
+
+- **No comments**: Do not add comments or inline documentation
+- **No JSDoc**: Do not use JSDoc annotations
+- Code should be self-documenting through clear naming and structure
+
 ### Exports
 
 - **Prefer named exports**: Use `export const ComponentName` instead of `export default` when possible
