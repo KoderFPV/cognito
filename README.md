@@ -76,7 +76,7 @@ docker-compose down
 ```
 
 Available services:
-- **Application**: http://localhost:3000
+- **Application**: http://localhost:2137
 - **MongoDB**: localhost:27017
 
 ### Local Development

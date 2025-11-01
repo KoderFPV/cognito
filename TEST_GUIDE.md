@@ -219,7 +219,7 @@ npx playwright show-report
 ### Playwright Configuration (`playwright.config.ts`)
 
 - **Test directory**: `e2e/`
-- **Base URL**: `http://localhost:3000`
+- **Base URL**: `http://localhost:2137`
 - **Browsers**: Desktop Chrome, Mobile Chrome (Pixel 5)
 - **Auto-start**: Dev server starts automatically
 - **Reporters**: HTML report
